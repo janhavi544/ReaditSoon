@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class adapter extends RecyclerView.Adapter<adapter.Viewholder> {
-
+    boolean bookmarked=false;
     private List<ModelClass> modelClassList;
 
     public adapter(List<ModelClass> modelClassList) {
@@ -26,15 +27,30 @@ public class adapter extends RecyclerView.Adapter<adapter.Viewholder> {
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
+        ImageButton bookmark=(ImageButton)v.findViewById(R.id.imageButton);
+        bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bookmarked==false)
+                {
+                    v.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+                    bookmarked=true;
+                }
+                else
+                {
+                    bookmarked=false;
+                    v.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
+                }
+            }
+        });
         return new Viewholder(v);
     }
-
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         final ModelClass item = modelClassList.get(position);
         String title = item.getTitle();
         String date = item.getDateAndTime();
-        String urlToImage = item.getUrlToImage();
+       // String urlToImage = item.getUrlToImage();
         String content=item.getContent();
         final String url = item.getUrl();
        //holder.setData(title,tag,dateTime);
@@ -42,8 +58,8 @@ public class adapter extends RecyclerView.Adapter<adapter.Viewholder> {
             holder.titleText.setText(title);
         if(date!=null)
             holder.dateTimeText.setText(date);
-        if(urlToImage!=null)
-            Picasso.get().load(urlToImage).into(holder.imageView);
+        //if(urlToImage!=null)
+          //  Picasso.get().load(urlToImage).into(holder.imageView);
     }
 
     @Override

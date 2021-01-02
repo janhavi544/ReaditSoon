@@ -1,26 +1,26 @@
 package com.readitsoon.pabbas;
 
 public class ModelClass {
-    String urlToImageIcon;
+   // String urlToImageIcon;
     String title;
     String url;
     String content;
     String dateAndTime;
     public ModelClass(String urlImage,String title,String dateAndTime,String url,String content)
     {
-     this.urlToImageIcon=urlImage;
+    // this.urlToImageIcon=urlImage;
      this.title=title;
      this.url=url;
      this.content=content;
      this.dateAndTime=dateAndTime;
     }
-    public String getUrlToImage()
-    {
-        return urlToImageIcon;
-    }
-    public void setUrlToImage(String urlToImage) {
-        this.urlToImageIcon = urlToImage;
-    }
+//    public String getUrlToImage()
+//    {
+//        return urlToImageIcon;
+//    }
+//    public void setUrlToImage(String urlToImage) {
+//        this.urlToImageIcon = urlToImage;
+//    }
     public String getUrl() {
         return url;
     }

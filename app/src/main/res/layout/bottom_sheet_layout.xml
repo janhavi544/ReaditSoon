@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet"
+    android:background="@drawable/bottom_sheet_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/filterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="14dp"
+        android:text="Filter"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/applyTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cancelTextView"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <TextView
+        android:id="@+id/applyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Apply"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/design_default_color_error"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="28dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/design_default_color_error"
+        android:backgroundTintMode="add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterText" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="28dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/design_default_color_error"
+        android:backgroundTintMode="add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showByPopularityTextView" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="29dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/marketCategoryText" />
+    <TextView
+        android:id="@+id/cancelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Cancel"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/design_default_color_error"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/showByPopularityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Show Popular Stories"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+    <Switch
+        android:id="@+id/showByPopularityButton"
+        android:layout_width="54dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:checked="true"
+        android:theme="@style/SCBSwitch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/showByPopularityTextView"
+        app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+    <TextView
+        android:id="@+id/showByCategoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Show by Category"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <Switch
+        android:id="@+id/showByCategoryButton"
+        android:layout_width="45dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:checked="false"
+        android:theme="@style/SCBSwitch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/allStoriesCategoryText"
+        android:layout_width="129dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:background="#FBF9F9"
+        android:clickable="true"
+        android:elevation="15dp"
+        android:foreground="@drawable/ic_baseline_format_list_bulleted_24"
+        android:foregroundGravity="center"
+        android:foregroundTint="@color/black"
+        android:gravity="bottom|center"
+        android:text="All Stories"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/economyCategoryText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showByCategoryTextView" />
+
+    <TextView
+        android:id="@+id/economyCategoryText"
+        android:layout_width="129dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="40dp"
+        android:elevation="15dp"
+        android:clickable="true"
+        android:foreground="@drawable/ic_baseline_stacked_line_chart_24"
+        android:foregroundGravity="center"
+        android:gravity="bottom|center"
+        android:text="Economy"
+        android:background="#FBF9F9"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:foregroundTint="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/allStoriesCategoryText"
+        app:layout_constraintTop_toBottomOf="@+id/showByCategoryTextView" />
+
+    <TextView
+        android:id="@+id/marketCategoryText"
+        android:layout_width="129dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:elevation="15dp"
+        android:background="#FBF9F9"
+        android:foreground="@drawable/ic_baseline_insights_24"
+        android:foregroundGravity="center"
+        android:gravity="bottom|center"
+        android:text="Market"
+        android:foregroundTint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/politicsCategoryText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allStoriesCategoryText" />
+
+    <TextView
+        android:id="@+id/businessCategoryText"
+        android:layout_width="129dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FBF9F9"
+        android:clickable="true"
+        android:elevation="15dp"
+        android:foreground="@drawable/ic_baseline_business_24"
+        android:foregroundGravity="center"
+        android:foregroundTint="@color/black"
+        android:gravity="bottom|center"
+        android:text="Business"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/economyCategoryText"
+        app:layout_constraintTop_toBottomOf="@+id/showByCategoryButton" />
+
+    <TextView
+        android:id="@+id/politicsCategoryText"
+        android:layout_width="129dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="10dp"
+        android:elevation="15dp"
+        android:foreground="@drawable/ic_baseline_supervisor_account_24"
+        android:foregroundGravity="center"
+        android:gravity="bottom|center"
+        android:text="Politics"
+        android:background="#FBF9F9"
+        android:clickable="true"
+        android:foregroundTint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/marketCategoryText"
+        app:layout_constraintTop_toBottomOf="@+id/allStoriesCategoryText" />
+
+    <TextView
+        android:id="@+id/scienceCategoryText"
+        android:layout_width="129dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FBF9F9"
+        android:clickable="true"
+        android:elevation="15dp"
+        android:foreground="@drawable/ic_baseline_science_24"
+        android:foregroundGravity="center"
+        android:foregroundTint="@color/black"
+        android:gravity="bottom|center"
+        android:text="Science"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/politicsCategoryText"
+        app:layout_constraintTop_toBottomOf="@+id/businessCategoryText" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
