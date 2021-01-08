@@ -1,5 +1,6 @@
 package com.readitsoon.pabbas;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 
@@ -86,46 +88,49 @@ public class MainActivity extends AppCompatActivity {
                         showByPopularity.setChecked(false);
                         popular=false;
                         category=true;
-                        sheetView.findViewById(R.id.allStoriesCategoryText).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                titleChange="ALL STORIES";
-                            }
-                        });
-                        sheetView.findViewById(R.id.economyCategoryText).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                titleChange="ECONOMY";
-                            }
-                        });
-                        sheetView.findViewById(R.id.businessCategoryText).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                titleChange="BUSINESS";
-                            }
-                        });
-                        sheetView.findViewById(R.id.marketCategoryText).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                titleChange="MARKET";
-                            }
-                        });
-                        sheetView.findViewById(R.id.politicsCategoryText).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                titleChange="POLITICS";
-                            }
-                        });
-                        sheetView.findViewById(R.id.scienceCategoryText).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                titleChange="SCIENCE";
-                            }
-                        });
                         if(showByCategory.isChecked()==false&&showByPopularity.isChecked()==false)
                             showByPopularity.setChecked(true);
                     }
                 });
+                if(showByCategory.isChecked()==true)
+                {
+                    sheetView.findViewById(R.id.allStoriesCategoryText).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            titleChange="ALL STORIES";
+                        }
+                    });
+                    sheetView.findViewById(R.id.economyCategoryText).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            titleChange="ECONOMY";
+                        }
+                    });
+                    sheetView.findViewById(R.id.businessCategoryText).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            titleChange="BUSINESS";
+                        }
+                    });
+                    sheetView.findViewById(R.id.marketCategoryText).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            titleChange="MARKET";
+                        }
+                    });
+                    sheetView.findViewById(R.id.politicsCategoryText).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            titleChange="POLITICS";
+                        }
+                    });
+                    sheetView.findViewById(R.id.scienceCategoryText).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            titleChange="SCIENCE";
+                        }
+                    });
+                }
                 if(showByCategory.isChecked()==false&&showByPopularity.isChecked()==false)
                     showByPopularity.setChecked(true);
                 sheetView.findViewById(R.id.applyTextView).setOnClickListener(new View.OnClickListener() {

@@ -58,7 +58,7 @@ public class allStoriesFragment extends Fragment {
         isBookmarked.add(false);
         isBookmarked.add(false);
         isBookmarked.add(false);
-        adapter mAdapter=new adapter(modelClasses);
+        adapter mAdapter=new adapter(getContext(),modelClasses,isBookmarked);
 //                        //dbHelper.addtoCategory(arrayList.get(i), Constant.TABLE_CATEGORY);
         recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();

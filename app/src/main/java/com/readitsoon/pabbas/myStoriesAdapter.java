@@ -17,57 +17,48 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class adapter extends RecyclerView.Adapter<adapter.Viewholder> {
+public class myStoriesAdapter extends RecyclerView.Adapter<myStoriesAdapter.Viewholder> {
     private static List<ModelClass> modelClassList;
     private static List<Boolean> isBookmarked;
     private Context context;
-
-    public adapter(Context context, List<ModelClass> modelClassList, List<Boolean> isBookmarked) {
+    public myStoriesAdapter(Context context, List<ModelClass> modelClassList, List<Boolean> isBookmarked) {
         this.modelClassList = modelClassList;
-        this.isBookmarked = isBookmarked;
-        this.context = context;
+        this.isBookmarked=isBookmarked;
+        this.context=context;
     }
 
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
         return new Viewholder(v);
     }
-
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         final ModelClass item = modelClassList.get(position);
-        String title = item.getTitle();
-        String date = item.getDateAndTime();
-        // String urlToImage = item.getUrlToImage();
-        String content = item.getContent();
-        final String url = item.getUrl();
-        //holder.setData(title,tag,dateTime);
-        if (title != null)
-            holder.titleText.setText(title);
-        if (date != null)
-            holder.dateTimeText.setText(date);
-        ImageButton bookmark = (ImageButton) holder.imageButton;
-
-        bookmark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isBookmarked.get(position) == false) {
-                    v.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
-                    isBookmarked.set(position, true);
-                    Toast.makeText(context, "Added to My Stories", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    isBookmarked.set(position, false);
-                    v.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
-                    Toast.makeText(context, "Removed from My Stories", Toast.LENGTH_SHORT).show();
+            String title = item.getTitle();
+            String date = item.getDateAndTime();
+            // String urlToImage = item.getUrlToImage();
+            String content=item.getContent();
+            final String url = item.getUrl();
+            //holder.setData(title,tag,dateTime);
+            if(title!=null)
+                holder.titleText.setText(title);
+            if(date!=null)
+                holder.dateTimeText.setText(date);
+            ImageButton bookmark=(ImageButton)holder.imageButton;
+            bookmark.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+            bookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        isBookmarked.set(position,false);
+                        v.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
+                        Toast.makeText(context, "Removed from My Stories", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-    //if(urlToImage!=null)
-    //  Picasso.get().load(urlToImage).into(holder.imageView);
-}
+            });
+        //if(urlToImage!=null)
+        //  Picasso.get().load(urlToImage).into(holder.imageView);
+    }
 
     @Override
     public int getItemCount() {
