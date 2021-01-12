@@ -19,9 +19,9 @@ import java.util.List;
 
 public class myStoriesAdapter extends RecyclerView.Adapter<myStoriesAdapter.Viewholder> {
     private static List<ModelClass> modelClassList;
-    private static List<Boolean> isBookmarked;
+    private static List<String> isBookmarked;
     private Context context;
-    public myStoriesAdapter(Context context, List<ModelClass> modelClassList, List<Boolean> isBookmarked) {
+    public myStoriesAdapter(Context context, List<ModelClass> modelClassList, List<String> isBookmarked) {
         this.modelClassList = modelClassList;
         this.isBookmarked=isBookmarked;
         this.context=context;
@@ -51,7 +51,7 @@ public class myStoriesAdapter extends RecyclerView.Adapter<myStoriesAdapter.View
             bookmark.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        isBookmarked.set(position,false);
+                        isBookmarked.set(position,"false");
                         v.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
                         Toast.makeText(context, "Removed from My Stories", Toast.LENGTH_SHORT).show();
                 }

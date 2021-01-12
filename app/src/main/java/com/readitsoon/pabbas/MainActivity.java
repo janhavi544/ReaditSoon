@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         showByCategory.setChecked(false);
+                        showByPopularity.setChecked(true);
                         popular=true;
                         category=false;
                         titleChange="ALL STORIES";
@@ -86,14 +87,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         showByPopularity.setChecked(false);
+                        showByCategory.setChecked(true);
                         popular=false;
                         category=true;
                         if(showByCategory.isChecked()==false&&showByPopularity.isChecked()==false)
                             showByPopularity.setChecked(true);
                     }
                 });
-                if(showByCategory.isChecked()==true)
-                {
                     sheetView.findViewById(R.id.allStoriesCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -130,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                             titleChange="SCIENCE";
                         }
                     });
-                }
                 if(showByCategory.isChecked()==false&&showByPopularity.isChecked()==false)
                     showByPopularity.setChecked(true);
                 sheetView.findViewById(R.id.applyTextView).setOnClickListener(new View.OnClickListener() {
@@ -139,9 +138,10 @@ public class MainActivity extends AppCompatActivity {
                         if(showByCategory.isChecked()==false&&showByPopularity.isChecked()==false)
                             showByPopularity.setChecked(true);
                         Toast.makeText(MainActivity.this, "Filter applied successfully!!", Toast.LENGTH_SHORT).show();
-                        if(titleChange.length()<1)
-                            titleChange="ALL STORIES";
+                        if(showByCategory.isChecked()==true)
                         setPagerAdapter(titleChange);
+                        if(showByPopularity.isChecked()==true)
+                            setPagerAdapter("ALL STORIES");
                         bottomSheetDialog.dismiss();
                     }
                 });

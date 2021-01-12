@@ -32,6 +32,7 @@ import java.util.List;
 public class allStoriesFragment extends Fragment {
     static List<ModelClass> modelClasses=new ArrayList<>();
     static List<Boolean> isBookmarked=new ArrayList<>();
+    static RecyclerView recyclerView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,27 +42,36 @@ public class allStoriesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.all_stories_fragment, container, false);
-        RecyclerView recyclerView=v.findViewById(R.id.recyclerViewAll);
+         recyclerView=v.findViewById(R.id.recyclerViewAll);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
         recyclerView.setHasFixedSize(true);
         final ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         //progressBar.setVisibility(View.VISIBLE);
-        modelClasses.add(new ModelClass("", "1", "02/01/2021","dsabhdgv","bcbcbdbcb"));
-        modelClasses.add(new ModelClass("", "2", "02/01/2021","dsabhdgv","bcbcbdbcb"));
-        modelClasses.add(new ModelClass("", "3", "02/01/2021","dsabhdgv","bcbcbdbcb"));
-        modelClasses.add(new ModelClass("", "4", "02/01/2021","dsabhdgv","bcbcbdbcb"));
-        modelClasses.add(new ModelClass("", "5", "02/01/2021","dsabhdgv","bcbcbdbcb"));
+        modelClasses.clear();
+        isBookmarked.clear();
+
+        ModelClass m=new ModelClass("", "1", "02/01/2021","dsabhdgv","bcbcbdbcb");
+                modelClasses.add(m);
+                isBookmarked.add(false);
+        m=new ModelClass("", "2", "02/01/2021","dsabhdgv","bcbcbdbcb");
+                modelClasses.add(m);
+                isBookmarked.add(false);
+        m=new ModelClass("", "3", "02/01/2021","dsabhdgv","bcbcbdbcb");
+                modelClasses.add(m);
+                isBookmarked.add(false);
+        m=new ModelClass("", "4", "02/01/2021","dsabhdgv","bcbcbdbcb");
+                modelClasses.add(m);
         isBookmarked.add(false);
-        isBookmarked.add(false);
-        isBookmarked.add(false);
-        isBookmarked.add(false);
-        isBookmarked.add(false);
+        m=new ModelClass("", "5", "02/01/2021","dsabhdgv","bcbcbdbcb");
+                modelClasses.add(m);
+                isBookmarked.add(false);
         adapter mAdapter=new adapter(getContext(),modelClasses,isBookmarked);
 //                        //dbHelper.addtoCategory(arrayList.get(i), Constant.TABLE_CATEGORY);
         recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+
        //String urltemp="http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5229215947344c06ac9a7120d4f6b8e2";
 
 //        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, urltemp, null, new Response.Listener<JSONObject>() {
