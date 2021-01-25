@@ -1,13 +1,10 @@
-package com.readitsoon.pabbas;
+package com.readitsoon.pabbas.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,23 +13,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.readitsoon.pabbas.model.ModelClass;
+import com.readitsoon.pabbas.R;
+import com.readitsoon.pabbas.adapter.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class allStoriesFragment extends Fragment {
-    static List<ModelClass> modelClasses=new ArrayList<>();
+    public static List<ModelClass> modelClasses=new ArrayList<>();
     static List<Boolean> isBookmarked=new ArrayList<>();
-    static RecyclerView recyclerView;
+    public static RecyclerView recyclerView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,4 +1,4 @@
-package com.readitsoon.pabbas;
+package com.readitsoon.pabbas.model;
 
 public class ModelClass {
    // String urlToImageIcon;

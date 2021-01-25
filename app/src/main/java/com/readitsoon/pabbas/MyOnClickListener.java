@@ -3,7 +3,9 @@ package com.readitsoon.pabbas;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.Toast;
+
+import com.readitsoon.pabbas.fragments.allStoriesFragment;
+import com.readitsoon.pabbas.model.ModelClass;
 
 public class MyOnClickListener implements View.OnClickListener {
     Context context;

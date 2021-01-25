@@ -1,4 +1,4 @@
-package com.readitsoon.pabbas;
+package com.readitsoon.pabbas.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +24,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
     public void addFragment(Fragment fragment,String title)
     {

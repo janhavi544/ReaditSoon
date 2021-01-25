@@ -1,4 +1,4 @@
-package com.readitsoon.pabbas;
+package com.readitsoon.pabbas.fragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -14,13 +14,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.readitsoon.pabbas.model.ModelClass;
+import com.readitsoon.pabbas.R;
+import com.readitsoon.pabbas.adapter.myStoriesAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class myStoriesFragment extends Fragment {
     static List<ModelClass> myModelClass;
     static List<String> myBookmarked;
-     myStoriesAdapter myStoriesAdapter;
+     com.readitsoon.pabbas.adapter.myStoriesAdapter myStoriesAdapter;
      LinearLayout lyt_no_storiesBookmarked;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +56,7 @@ public class myStoriesFragment extends Fragment {
         myBookmarked=new ArrayList<>();
         myModelClass.clear();
         myBookmarked.clear();
-        for(int i=0;i<allStoriesFragment.isBookmarked.size();i++)
+        for(int i = 0; i< allStoriesFragment.isBookmarked.size(); i++)
         {
             if(allStoriesFragment.isBookmarked.get(i)==true)
             {
