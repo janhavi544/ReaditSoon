@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -66,12 +67,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         private ImageView shareImageView;
         private TextView trailTextView;
         private CardView cardView;
-
+        private ImageView bookmarkImageView;
         ViewHolder(View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.title_card);
             sectionTextView = itemView.findViewById(R.id.section_card);
-
+            bookmarkImageView=itemView.findViewById(R.id.bookmark_image_card);
             dateTextView = itemView.findViewById(R.id.date_card);
             thumbnailImageView = itemView.findViewById(R.id.thumbnail_image_card);
             shareImageView = itemView.findViewById(R.id.share_image_card);
@@ -98,7 +99,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         // and set the plain text on the textView
         String trailTextHTML = currentNews.getTrailTextHtml();
         holder.trailTextView.setText(Html.fromHtml(Html.fromHtml(trailTextHTML).toString()));
-
+        //bookmarking a news item
+        holder.bookmarkImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo add in my stories
+                holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+                Toast.makeText(mContext, "Added to My Stories successfully!!", Toast.LENGTH_SHORT).show();
+            }
+        });
         // Set an OnClickListener to open a website with more information about the selected article
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

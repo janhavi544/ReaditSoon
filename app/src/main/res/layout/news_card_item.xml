@@ -81,7 +81,15 @@
                     android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/share_image_card"
                     tools:text="date" />
-
+                <ImageView
+                    android:id="@+id/bookmark_image_card"
+                    android:layout_width="@dimen/image_share"
+                    android:layout_height="@dimen/image_share"
+                    android:layout_toLeftOf="@id/share_image_card"
+                    android:layout_marginEnd="@dimen/layout_margin"
+                    android:contentDescription="@string/image_des_ic_share"
+                    android:background="@drawable/ic_baseline_bookmark_border_24"
+                    android:backgroundTint="@color/enable_thumb_red"/>
                 <ImageView
                     android:id="@+id/share_image_card"
                     android:layout_width="@dimen/image_share"
