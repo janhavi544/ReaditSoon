@@ -60,7 +60,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView titleTextView;
         private TextView sectionTextView;
-        private TextView authorTextView;
+        //private TextView authorTextView;
         private TextView dateTextView;
         private ImageView thumbnailImageView;
         private ImageView shareImageView;
@@ -92,8 +92,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 
         // Get time difference between the current date and web publication date and
         // set the time difference on the textView
-        holder.dateTextView.setText(getTimeDifference(formatDate(currentNews.getDate())));
-
+        //holder.dateTextView.setText(getTimeDifference(formatDate(currentNews.getDate())));
+        holder.dateTextView.setText(formatDate(currentNews.getDate()));
         // Get string of the trailTextHTML and convert Html text to plain text
         // and set the plain text on the textView
         String trailTextHTML = currentNews.getTrailTextHtml();
