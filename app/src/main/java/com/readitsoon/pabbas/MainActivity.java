@@ -65,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
                     showByPopularity.setChecked(true);
                     showByCategory.setChecked(false);
                 }
-                else if(popular==false&&category==true)
+                else
                 {
+                    popular=false;
+                    category=true;
                     showByPopularity.setChecked(false);
                     showByCategory.setChecked(true);
                 }
@@ -93,16 +95,16 @@ public class MainActivity extends AppCompatActivity {
                             showByPopularity.setChecked(true);
                     }
                 });
-                    sheetView.findViewById(R.id.allStoriesCategoryText).setOnClickListener(new View.OnClickListener() {
+                    sheetView.findViewById(R.id.worldCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             titleChange="ALL STORIES";
                         }
                     });
-                    sheetView.findViewById(R.id.economyCategoryText).setOnClickListener(new View.OnClickListener() {
+                    sheetView.findViewById(R.id.societyCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            titleChange="ECONOMY";
+                            titleChange="SOCIETY";
                         }
                     });
                     sheetView.findViewById(R.id.businessCategoryText).setOnClickListener(new View.OnClickListener() {
@@ -111,16 +113,16 @@ public class MainActivity extends AppCompatActivity {
                             titleChange="BUSINESS";
                         }
                     });
-                    sheetView.findViewById(R.id.marketCategoryText).setOnClickListener(new View.OnClickListener() {
+                    sheetView.findViewById(R.id.environmentCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            titleChange="MARKET";
+                            titleChange="ENVIRONMENT";
                         }
                     });
-                    sheetView.findViewById(R.id.politicsCategoryText).setOnClickListener(new View.OnClickListener() {
+                    sheetView.findViewById(R.id.cultureCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            titleChange="POLITICS";
+                            titleChange="CULTURE";
                         }
                     });
                     sheetView.findViewById(R.id.scienceCategoryText).setOnClickListener(new View.OnClickListener() {
@@ -129,6 +131,18 @@ public class MainActivity extends AppCompatActivity {
                             titleChange="SCIENCE";
                         }
                     });
+                sheetView.findViewById(R.id.sportCategoryText).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        titleChange="SPORT";
+                    }
+                });
+                sheetView.findViewById(R.id.fashionCategoryText).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        titleChange="FASHION";
+                    }
+                });
                 if(showByCategory.isChecked()==false&&showByPopularity.isChecked()==false)
                     showByPopularity.setChecked(true);
                 sheetView.findViewById(R.id.applyTextView).setOnClickListener(new View.OnClickListener() {
@@ -156,19 +170,43 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setPagerAdapter(String title) {
         categoryFragmentPagerAdapter = new CategoryFragmentPagerAdapter(getSupportFragmentManager());
-        categoryFragmentPagerAdapter.addFragment(new myStoriesFragment(),"MY STORIES",0);
 
        if(title.equals("BUSINESS"))
        {
-           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.business)),title,1);
-            Toast.makeText(this, "business", Toast.LENGTH_SHORT).show();
-           // categoryFragmentPagerAdapter.removeFragment(new AllStoryFragment(),2);
-            //categoryFragmentPagerAdapter.notifyDataSetChanged();
-           // categoryFragmentPagerAdapter.addFragment(new BusinessFragment(),getString(R.string.business),2);
+           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.business)),title,0);
         }
-       else {
-           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(title),title,1);
+        else if(title.equals("WORLD"))
+        {
+            categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.world)),title,0);
+        }
+        else if(title.equals("SCIENCE"))
+        {
+            categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.science)),title,0);
+        }
+        else if(title.equals("SPORT"))
+        {
+            categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.sport)),title,0);
+        }
+       else if(title.equals("ENVIRONMENT"))
+       {
+           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.environment)),title,0);
        }
+       else if(title.equals("SOCIETY"))
+       {
+           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.society)),title,0);
+       }
+       else if(title.equals("FASHION"))
+       {
+           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.fashion)),title,0);
+       }
+       else if(title.equals("CULTURE"))
+       {
+           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.culture)),title,0);
+       }
+       else {
+           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(title),title,0);
+       }
+        categoryFragmentPagerAdapter.addFragment(new myStoriesFragment(),"MY STORIES",1);
         viewPager.setAdapter(categoryFragmentPagerAdapter);
     }
 }

@@ -37,7 +37,8 @@
                 android:id="@+id/section_card"
                 style="@style/SectionTextViewStyle"
                 android:textColor="@color/enable_thumb_red"
-                android:textSize="20dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:textAllCaps="true"
                 android:layout_alignParentStart="true"
@@ -79,6 +80,7 @@
                     style="@style/DateTextViewStyle"
                     android:textColor="@color/enable_thumb_red"
                     android:layout_alignParentStart="true"
+                    android:textSize="25dp"
                     android:layout_toStartOf="@+id/share_image_card"
                     tools:text="date" />
                 <ImageView
