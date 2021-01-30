@@ -56,14 +56,14 @@ public class myStoriesFragment extends Fragment {
         myBookmarked=new ArrayList<>();
         myModelClass.clear();
         myBookmarked.clear();
-        for(int i = 0; i< allStoriesFragment.isBookmarked.size(); i++)
-        {
-            if(allStoriesFragment.isBookmarked.get(i)==true)
-            {
-                myModelClass.add(allStoriesFragment.modelClasses.get(i));
-                myBookmarked.add("true");
-            }
-        }
+//        for(int i = 0; i< allStoriesFragment.isBookmarked.size(); i++)
+//        {
+//            if(allStoriesFragment.isBookmarked.get(i)==true)
+//            {
+//                myModelClass.add(allStoriesFragment.modelClasses.get(i));
+//                myBookmarked.add("true");
+//            }
+//        }
 
        myStoriesAdapter=new myStoriesAdapter(getContext(),myModelClass,myBookmarked);
 //                        //dbHelper.addtoCategory(arrayList.get(i), Constant.TABLE_CATEGORY);

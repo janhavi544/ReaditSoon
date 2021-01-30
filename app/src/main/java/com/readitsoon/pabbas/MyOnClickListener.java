@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.readitsoon.pabbas.fragments.allStoriesFragment;
 import com.readitsoon.pabbas.model.ModelClass;
 
 public class MyOnClickListener implements View.OnClickListener {
@@ -15,10 +14,10 @@ public class MyOnClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        int itemPosition = allStoriesFragment.recyclerView.getChildLayoutPosition(v);
-        ModelClass item = allStoriesFragment.modelClasses.get(itemPosition);
-        Intent intent=new Intent(context,StoriesActivity.class);
-        intent.putExtra("item",item.getTitle());
-        context.startActivity(intent);
+//        int itemPosition = allStoriesFragment.recyclerView.getChildLayoutPosition(v);
+//        ModelClass item = allStoriesFragment.modelClasses.get(itemPosition);
+//        Intent intent=new Intent(context,StoriesActivity.class);
+//        intent.putExtra("item",item.getTitle());
+//        context.startActivity(intent);
     }
 }

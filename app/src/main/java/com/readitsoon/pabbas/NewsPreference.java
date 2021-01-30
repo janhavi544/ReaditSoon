@@ -80,6 +80,9 @@ public final class NewsPreference {
      */
     public static String getPreferredUrl(Context context, String section) {
         Uri.Builder uriBuilder = getPreferredUri(context);
+        if(section.equals("ALL STORIES"))
+            return uriBuilder.toString();
+        else
         return uriBuilder.appendQueryParameter(SECTION_PARAM, section).toString();
     }
 }

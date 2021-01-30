@@ -17,13 +17,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
-import com.readitsoon.pabbas.adapter.MyFragmentPagerAdapter;
+import com.readitsoon.pabbas.adapter.CategoryFragmentPagerAdapter;
 import com.readitsoon.pabbas.fragments.AllStoryFragment;
-import com.readitsoon.pabbas.fragments.allStoriesFragment;
 import com.readitsoon.pabbas.fragments.myStoriesFragment;
 
 public class MainActivity extends AppCompatActivity {
-    MyFragmentPagerAdapter myFragmentPagerAdapter;
+    CategoryFragmentPagerAdapter categoryFragmentPagerAdapter;
     ViewPager viewPager;
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -155,12 +154,21 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-
     private void setPagerAdapter(String title) {
-        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
-        myFragmentPagerAdapter.addFragment(new allStoriesFragment(),title);
-        myFragmentPagerAdapter.addFragment(new myStoriesFragment(),"MY STORIES");
-        myFragmentPagerAdapter.addFragment(new AllStoryFragment(),"hiiiii");
-        viewPager.setAdapter(myFragmentPagerAdapter);
+        categoryFragmentPagerAdapter = new CategoryFragmentPagerAdapter(getSupportFragmentManager());
+        categoryFragmentPagerAdapter.addFragment(new myStoriesFragment(),"MY STORIES",0);
+
+       if(title.equals("BUSINESS"))
+       {
+           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.business)),title,1);
+            Toast.makeText(this, "business", Toast.LENGTH_SHORT).show();
+           // categoryFragmentPagerAdapter.removeFragment(new AllStoryFragment(),2);
+            //categoryFragmentPagerAdapter.notifyDataSetChanged();
+           // categoryFragmentPagerAdapter.addFragment(new BusinessFragment(),getString(R.string.business),2);
+        }
+       else {
+           categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(title),title,1);
+       }
+        viewPager.setAdapter(categoryFragmentPagerAdapter);
     }
 }

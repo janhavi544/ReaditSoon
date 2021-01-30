@@ -8,11 +8,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-    private final ArrayList<Fragment> fragmentList=new ArrayList<>();
-    private final ArrayList<String> fragmentTitle=new ArrayList<>();
+public class CategoryFragmentPagerAdapter extends FragmentPagerAdapter {
+    public   ArrayList<Fragment> fragmentList=new ArrayList<>();
+    public   ArrayList<String> fragmentTitle=new ArrayList<>();
 
-    public MyFragmentPagerAdapter(@NonNull FragmentManager fm) {
+    public CategoryFragmentPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
@@ -24,14 +24,14 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return fragmentList.size();
     }
-    public void addFragment(Fragment fragment,String title)
+    public void addFragment(Fragment fragment,String title,int position)
     {
-        fragmentList.add(fragment);
-        fragmentTitle.add(title);
-    }
+        fragmentList.add(position,fragment);
+        fragmentTitle.add(position,title);
 
+    }
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
