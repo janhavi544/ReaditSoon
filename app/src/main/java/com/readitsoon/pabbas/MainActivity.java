@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     sheetView.findViewById(R.id.worldCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            titleChange="ALL STORIES";
+                            titleChange="WORLD";
                         }
                     });
                     sheetView.findViewById(R.id.societyCategoryText).setOnClickListener(new View.OnClickListener() {
@@ -170,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setPagerAdapter(String title) {
         categoryFragmentPagerAdapter = new CategoryFragmentPagerAdapter(getSupportFragmentManager());
-
+       if(title==null||title.length()<=0)
+           title+="ALL STORIES";
        if(title.equals("BUSINESS"))
        {
            categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.business)),title,0);
