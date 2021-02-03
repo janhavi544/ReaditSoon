@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.Html;
@@ -22,11 +23,14 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.readitsoon.pabbas.MainActivity;
 import com.readitsoon.pabbas.News;
 import com.readitsoon.pabbas.R;
+import com.readitsoon.pabbas.fragments.MyStoryFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -36,7 +40,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     private Context mContext;
     private List<News> mNewsList;
     private SharedPreferences sharedPrefs;
-
+    public static List<News> bookmarked=new ArrayList<>();
     /**
      * Constructs a new {@link NewsAdapter}
      * @param context of the app
@@ -104,8 +108,27 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 //todo add in my stories
-                holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
-                Toast.makeText(mContext, "Added to My Stories successfully!!", Toast.LENGTH_SHORT).show();
+                if(bookmarked!=null&&bookmarked.contains(currentNews.getUrl()))
+                {
+                    //it already contains this item so unbookmark it and remove from list
+                    holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
+                    bookmarked.remove(currentNews);
+                    Toast.makeText(mContext, "Removed from My Stories successfully!!", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(mContext, MainActivity.class);
+                    intent.putExtra("finish","finish");
+                    mContext.startActivity(intent);
+                }
+                else
+                {
+                    //else bookmark it and add in list
+                    holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+                    bookmarked.add(currentNews);
+                    Toast.makeText(mContext, "Added to My Stories successfully!!", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(mContext, MainActivity.class);
+                    intent.putExtra("finish","finish");
+                    mContext.startActivity(intent);
+                }
+
             }
         });
         // Set an OnClickListener to open a website with more information about the selected article

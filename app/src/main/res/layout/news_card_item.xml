@@ -80,7 +80,6 @@
                     style="@style/DateTextViewStyle"
                     android:textColor="@color/enable_thumb_red"
                     android:layout_alignParentStart="true"
-                    android:textSize="25dp"
                     android:layout_toStartOf="@+id/share_image_card"
                     tools:text="date" />
                 <ImageView

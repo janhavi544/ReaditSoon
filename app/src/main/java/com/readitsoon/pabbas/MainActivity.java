@@ -1,5 +1,7 @@
 package com.readitsoon.pabbas;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,7 +20,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
 import com.readitsoon.pabbas.adapter.CategoryFragmentPagerAdapter;
+import com.readitsoon.pabbas.adapter.NewsAdapter;
 import com.readitsoon.pabbas.fragments.AllStoryFragment;
+import com.readitsoon.pabbas.fragments.MyStoryFragment;
 import com.readitsoon.pabbas.fragments.myStoriesFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     String titleChange="";
     static boolean popular=true;
     static boolean category=false;
+    public static int size;
     private BottomSheetDialog bottomSheetDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setPagerAdapter("ALL STORIES");
         tabLayout.setupWithViewPager(viewPager);
+        size= NewsAdapter.bookmarked.size();
+     String str=getIntent().getStringExtra("finish");
+     if(str!=null&&str.equals("finish"))
+     {
+
+         finish();
+     }
     }
 
     @Override
@@ -51,6 +63,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //return super.onOptionsItemSelected(item);
+        int[][] states = new int[][] {
+                new int[] { android.R.attr.state_enabled}, // enabled
+                new int[] {-android.R.attr.state_enabled}, // disabled
+                new int[] { android.R.attr.state_pressed}  // pressed
+        };
+        int[][] statesDisabled = new int[][] {
+                new int[] {android.R.attr.state_enabled},
+        };
+        int[] colors = new int[] {
+                Color.parseColor("#800219"),
+                Color.parseColor("#FF000000"),
+                Color.RED
+        };
+        int [] colorsDisable=new int[]{
+                Color.parseColor("#FF000000")
+        };
+        ColorStateList myList = new ColorStateList(states, colors);
+        ColorStateList disabledList=new ColorStateList(statesDisabled,colorsDisable);
         switch (item.getItemId())
         {
             case R.id.configure:
@@ -99,48 +129,120 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             titleChange="WORLD";
+                            if(showByCategory.isChecked()==true)
+                            sheetView.findViewById(R.id.worldCategoryText).setForegroundTintList(myList);
+                            sheetView.findViewById(R.id.societyCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.businessCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.environmentCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.cultureCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.scienceCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.fashionCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.sportCategoryText).setForegroundTintList(disabledList);
                         }
                     });
                     sheetView.findViewById(R.id.societyCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             titleChange="SOCIETY";
+                            if(showByCategory.isChecked()==true)
+                                sheetView.findViewById(R.id.societyCategoryText).setForegroundTintList(myList);
+                            sheetView.findViewById(R.id.worldCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.businessCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.environmentCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.cultureCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.scienceCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.fashionCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.sportCategoryText).setForegroundTintList(disabledList);
                         }
                     });
                     sheetView.findViewById(R.id.businessCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             titleChange="BUSINESS";
+                            if(showByCategory.isChecked()==true)
+                                sheetView.findViewById(R.id.businessCategoryText).setForegroundTintList(myList);
+                            sheetView.findViewById(R.id.worldCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.societyCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.environmentCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.cultureCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.scienceCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.fashionCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.sportCategoryText).setForegroundTintList(disabledList);
                         }
                     });
                     sheetView.findViewById(R.id.environmentCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             titleChange="ENVIRONMENT";
+                            if(showByCategory.isChecked()==true)
+                                sheetView.findViewById(R.id.environmentCategoryText).setForegroundTintList(myList);
+                            sheetView.findViewById(R.id.worldCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.societyCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.businessCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.cultureCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.scienceCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.fashionCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.sportCategoryText).setForegroundTintList(disabledList);
                         }
                     });
                     sheetView.findViewById(R.id.cultureCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             titleChange="CULTURE";
+                            if(showByCategory.isChecked()==true)
+                                sheetView.findViewById(R.id.cultureCategoryText).setForegroundTintList(myList);
+                            sheetView.findViewById(R.id.worldCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.societyCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.businessCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.environmentCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.scienceCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.fashionCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.sportCategoryText).setForegroundTintList(disabledList);
                         }
                     });
                     sheetView.findViewById(R.id.scienceCategoryText).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             titleChange="SCIENCE";
+                            if(showByCategory.isChecked()==true)
+                                sheetView.findViewById(R.id.scienceCategoryText).setForegroundTintList(myList);
+                            sheetView.findViewById(R.id.worldCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.societyCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.businessCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.environmentCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.cultureCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.fashionCategoryText).setForegroundTintList(disabledList);
+                            sheetView.findViewById(R.id.sportCategoryText).setForegroundTintList(disabledList);
                         }
                     });
                 sheetView.findViewById(R.id.sportCategoryText).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         titleChange="SPORT";
+                        if(showByCategory.isChecked()==true)
+                            sheetView.findViewById(R.id.sportCategoryText).setForegroundTintList(myList);
+                        sheetView.findViewById(R.id.worldCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.societyCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.businessCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.environmentCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.cultureCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.scienceCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.fashionCategoryText).setForegroundTintList(disabledList);
                     }
                 });
                 sheetView.findViewById(R.id.fashionCategoryText).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         titleChange="FASHION";
+                        if(showByCategory.isChecked()==true)
+                            sheetView.findViewById(R.id.fashionCategoryText).setForegroundTintList(myList);
+                        sheetView.findViewById(R.id.worldCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.societyCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.businessCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.environmentCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.cultureCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.scienceCategoryText).setForegroundTintList(disabledList);
+                        sheetView.findViewById(R.id.sportCategoryText).setForegroundTintList(disabledList);
                     }
                 });
                 if(showByCategory.isChecked()==false&&showByPopularity.isChecked()==false)
@@ -207,7 +309,11 @@ public class MainActivity extends AppCompatActivity {
        else {
            categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(title),title,0);
        }
-        categoryFragmentPagerAdapter.addFragment(new myStoriesFragment(),"MY STORIES",1);
+        categoryFragmentPagerAdapter.addFragment(new MyStoryFragment(),"MY STORIES",1);
         viewPager.setAdapter(categoryFragmentPagerAdapter);
+        if( NewsAdapter.bookmarked.size()<size|| NewsAdapter.bookmarked.size()>size)
+        {
+            categoryFragmentPagerAdapter.notifyDataSetChanged();
+        }
     }
 }
