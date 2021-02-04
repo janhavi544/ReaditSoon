@@ -85,7 +85,7 @@ public class BaseFragment extends Fragment implements LoaderManager.LoaderCallba
         mRecyclerView.setEmptyView(mEmptyStateTextView);
 
         // Create a new adapter that takes an empty list of news as input
-        mAdapter = new NewsAdapter(getActivity(), new ArrayList<News>());
+        mAdapter = new NewsAdapter(getActivity(), new ArrayList<News>(), "allStory");
 
         // Set the adapter on the {@link recyclerView}
         mRecyclerView.setAdapter(mAdapter);

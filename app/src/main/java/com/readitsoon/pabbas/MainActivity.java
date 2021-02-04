@@ -25,6 +25,8 @@ import com.readitsoon.pabbas.fragments.AllStoryFragment;
 import com.readitsoon.pabbas.fragments.MyStoryFragment;
 import com.readitsoon.pabbas.fragments.myStoriesFragment;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     CategoryFragmentPagerAdapter categoryFragmentPagerAdapter;
     ViewPager viewPager;
@@ -309,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
        else {
            categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(title),title,0);
        }
-        categoryFragmentPagerAdapter.addFragment(new MyStoryFragment(),"MY STORIES",1);
+        categoryFragmentPagerAdapter.addFragment(new MyStoryFragment(getApplicationContext()),"MY STORIES",1);
         viewPager.setAdapter(categoryFragmentPagerAdapter);
         if( NewsAdapter.bookmarked.size()<size|| NewsAdapter.bookmarked.size()>size)
         {

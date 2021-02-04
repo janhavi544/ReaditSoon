@@ -1,6 +1,7 @@
 package com.readitsoon.pabbas.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.gson.Gson;
 import com.readitsoon.pabbas.EmptyRecyclerView;
 import com.readitsoon.pabbas.News;
 import com.readitsoon.pabbas.NewsLoader;
@@ -50,7 +52,25 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
      */
     private static int size;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    public static Context context;
+    public MyStoryFragment(Context context) {
+        this.context=context;
+    }
+    private static SharedPreferences sharedPreferences = context.getSharedPreferences("Bookmarks", Context.MODE_PRIVATE);
 
+    private static SharedPreferences.Editor editor = sharedPreferences.edit();
+
+    public <News> void setList(String key, List<News> list) {
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+
+        set(key, json);
+    }
+
+    public static void set(String key, String value) {
+        editor.putString(key, value);
+        editor.commit();
+    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
@@ -86,7 +106,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
         mRecyclerView.setEmptyView(mEmptyStateTextView);
 
         // Create a new adapter that takes an empty list of news as input
-        mAdapter = new NewsAdapter(getActivity(), new ArrayList<News>());
+        mAdapter = new NewsAdapter(getActivity(), new ArrayList<News>(),"myStory");
 
         // Set the adapter on the {@link recyclerView}
         mRecyclerView.setAdapter(mAdapter);
