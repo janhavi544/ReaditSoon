@@ -56,21 +56,21 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     public MyStoryFragment(Context context) {
         this.context=context;
     }
-    private static SharedPreferences sharedPreferences = context.getSharedPreferences("Bookmarks", Context.MODE_PRIVATE);
+//    private static SharedPreferences sharedPreferences = context.getSharedPreferences("Bookmarks", Context.MODE_PRIVATE);
 
-    private static SharedPreferences.Editor editor = sharedPreferences.edit();
+  //  private static SharedPreferences.Editor editor = sharedPreferences.edit();
 
-    public <News> void setList(String key, List<News> list) {
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-
-        set(key, json);
-    }
-
-    public static void set(String key, String value) {
-        editor.putString(key, value);
-        editor.commit();
-    }
+//    public <News> void setList(String key, List<News> list) {
+//        Gson gson = new Gson();
+//        String json = gson.toJson(list);
+//
+//        set(key, json);
+//    }
+//
+//    public static void set(String key, String value) {
+//        editor.putString(key, value);
+//        editor.commit();
+//    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
