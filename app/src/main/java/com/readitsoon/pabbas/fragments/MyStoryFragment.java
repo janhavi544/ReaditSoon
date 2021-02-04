@@ -28,7 +28,8 @@ import com.readitsoon.pabbas.NewsLoader;
 import com.readitsoon.pabbas.NewsLoaderMyStory;
 import com.readitsoon.pabbas.NewsPreference;
 import com.readitsoon.pabbas.R;
-import com.readitsoon.pabbas.adapter.NewsAdapter;
+
+import com.readitsoon.pabbas.adapter.MyStoryNewsAdapter;
 import com.readitsoon.pabbas.util.Constants;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     private static final int NEWS_LOADER_ID = 1;
 
     /** Adapter for the list of news */
-    private NewsAdapter mAdapter;
+    private MyStoryNewsAdapter mAdapter;
 
     /** TextView that is displayed when the recycler view is empty */
     private TextView mEmptyStateTextView;
@@ -107,7 +108,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
         mRecyclerView.setEmptyView(mEmptyStateTextView);
 
         // Create a new adapter that takes an empty list of news as input
-        mAdapter = new NewsAdapter(getActivity(), new ArrayList<News>(),"myStory");
+        mAdapter = new MyStoryNewsAdapter(getActivity(), new ArrayList<News>());
 
         // Set the adapter on the {@link recyclerView}
         mRecyclerView.setAdapter(mAdapter);
