@@ -25,6 +25,7 @@ import com.readitsoon.pabbas.fragments.AllStoryFragment;
 import com.readitsoon.pabbas.fragments.MyStoryFragment;
 import com.readitsoon.pabbas.fragments.myStoriesFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     String titleChange="";
     static boolean popular=true;
     static boolean category=false;
-    public static int size;
+   // public static int size;
+    public static List<News> bookmarked=new ArrayList<>();
     private BottomSheetDialog bottomSheetDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +49,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setPagerAdapter("ALL STORIES");
         tabLayout.setupWithViewPager(viewPager);
-        size= NewsAdapter.bookmarked.size();
+        //size= NewsAdapter.bookmarked.size();
      String str=getIntent().getStringExtra("finish");
      if(str!=null&&str.equals("finish"))
      {
-
          finish();
      }
     }
@@ -313,9 +314,9 @@ public class MainActivity extends AppCompatActivity {
        }
         categoryFragmentPagerAdapter.addFragment(new MyStoryFragment(getApplicationContext()),"MY STORIES",1);
         viewPager.setAdapter(categoryFragmentPagerAdapter);
-        if( NewsAdapter.bookmarked.size()<size|| NewsAdapter.bookmarked.size()>size)
-        {
-            categoryFragmentPagerAdapter.notifyDataSetChanged();
-        }
+//        if( NewsAdapter.bookmarked.size()<size|| NewsAdapter.bookmarked.size()>size)
+//        {
+//            categoryFragmentPagerAdapter.notifyDataSetChanged();
+//        }
     }
 }

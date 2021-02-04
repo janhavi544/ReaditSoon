@@ -43,7 +43,7 @@ public class NewsLoaderMyStory extends AsyncTaskLoader<List<News>> {
         }
 
         // Perform the network request, parse the response, and extract a list of news.
-        List<News> newsData = NewsAdapter.bookmarked;
+        List<News> newsData = MainActivity.bookmarked;
         return newsData;
     }
 }

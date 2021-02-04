@@ -22,6 +22,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.readitsoon.pabbas.EmptyRecyclerView;
+import com.readitsoon.pabbas.MainActivity;
 import com.readitsoon.pabbas.News;
 import com.readitsoon.pabbas.NewsLoader;
 import com.readitsoon.pabbas.NewsLoaderMyStory;
@@ -113,7 +114,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
 
         // Check for network connectivity and initialize the loader
         initializeLoader(isConnected());
-        List<News> bookmarked=mAdapter.bookmarked;
+        List<News> bookmarked= MainActivity.bookmarked;
         size=bookmarked.size();
         onLoadFinished(onCreateLoader(0,Bundle.EMPTY),bookmarked);
         if(bookmarked.size()<size||bookmarked.size()>size)

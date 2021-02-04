@@ -37,7 +37,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     private List<News> mNewsList;
     private SharedPreferences sharedPrefs;
     private String from;
-    public static List<News> bookmarked=new ArrayList<>();
+   // public static List<News> bookmarked=new ArrayList<>();
     /**
      * Constructs a new {@link NewsAdapter}
      * @param context of the app
@@ -105,42 +105,42 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         //if from myStrory fragment
         if(from.equals("myStory"))
         {
-            if(bookmarked!=null&&bookmarked.contains(currentNews.getUrl()))
+            if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews.getUrl()))
             holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
-            else
-            {
-                holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
-            }
+//            else
+//            {
+//                holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
+//            }
             holder.bookmarkImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(bookmarked!=null&&bookmarked.contains(currentNews.getUrl()))
+                    if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews.getUrl()))
                     {
                         //it already contains this item so unbookmark it and remove from list
                         holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
-                        bookmarked.remove(currentNews);
+                        MainActivity.bookmarked.remove(currentNews);
                         Toast.makeText(mContext, "Removed from My Stories successfully!!", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(mContext, MainActivity.class);
                         intent.putExtra("finish","finish");
                         mContext.startActivity(intent);
                     }
-                    else
-                    {
-                        //else bookmark it and add in list
-                        holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
-                        bookmarked.add(currentNews);
-                        Toast.makeText(mContext, "Added to My Stories successfully!!", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(mContext, MainActivity.class);
-                        intent.putExtra("finish","finish");
-                        mContext.startActivity(intent);
-                    }
+//                    else
+//                    {
+//                        //else bookmark it and add in list
+//                        holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+//                        bookmarked.add(currentNews);
+//                        Toast.makeText(mContext, "Added to My Stories successfully!!", Toast.LENGTH_SHORT).show();
+//                        Intent intent=new Intent(mContext, MainActivity.class);
+//                        intent.putExtra("finish","finish");
+//                        mContext.startActivity(intent);
+//                    }
 
                 }
             });
         }
         else
         {
-            if(bookmarked!=null&&bookmarked.contains(currentNews.getUrl()))
+            if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews.getUrl()))
                 holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
             else
             holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
@@ -148,11 +148,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
             holder.bookmarkImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(bookmarked!=null&&bookmarked.contains(currentNews.getUrl()))
+                    if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews.getUrl()))
                     {
                         //it already contains this item so unbookmark it and remove from list
                         holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
-                        bookmarked.remove(currentNews);
+                        MainActivity.bookmarked.remove(currentNews);
                         Toast.makeText(mContext, "Removed from My Stories successfully!!", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(mContext, MainActivity.class);
                         intent.putExtra("finish","finish");
@@ -162,7 +162,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
                     {
                         //else bookmark it and add in list
                         holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
-                        bookmarked.add(currentNews);
+                        MainActivity.bookmarked.add(currentNews);
                         Toast.makeText(mContext, "Added to My Stories successfully!!", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(mContext, MainActivity.class);
                         intent.putExtra("finish","finish");
