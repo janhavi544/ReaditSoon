@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setPagerAdapter("ALL STORIES");
         tabLayout.setupWithViewPager(viewPager);
-        //size= NewsAdapter.bookmarked.size();
+        // size= NewsAdapter.bookmarked.size();
      String str=getIntent().getStringExtra("finish");
      if(str!=null&&str.equals("finish"))
      {
