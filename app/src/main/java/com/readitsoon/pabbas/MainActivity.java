@@ -22,10 +22,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
 import com.readitsoon.pabbas.adapter.CategoryFragmentPagerAdapter;
-import com.readitsoon.pabbas.adapter.NewsAdapter;
 import com.readitsoon.pabbas.fragments.AllStoryFragment;
 import com.readitsoon.pabbas.fragments.MyStoryFragment;
-import com.readitsoon.pabbas.fragments.myStoriesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
