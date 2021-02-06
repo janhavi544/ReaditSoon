@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "935433862000",
+    "project_id": "readitsoon-218da",
+    "storage_bucket": "readitsoon-218da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935433862000:android:1c8e48732257ec7264edb5",
+        "android_client_info": {
+          "package_name": "com.readitsoon.pabbas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935433862000-sgrj9pb6a6dlcp7jjiq0q14bascu8g19.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.readitsoon.pabbas",
+            "certificate_hash": "cea2a12f5d69531c449b42637e58fd65b0fe227e"
+          }
+        },
+        {
+          "client_id": "935433862000-6td3b4msbgm6jo5h0tu2kn1ue0a4jec4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt_Y0QxAltssNeQMcNg0OOhZfO8-6lL30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935433862000-6td3b4msbgm6jo5h0tu2kn1ue0a4jec4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

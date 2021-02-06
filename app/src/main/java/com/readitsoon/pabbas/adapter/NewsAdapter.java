@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.readitsoon.pabbas.MainActivity;
 import com.readitsoon.pabbas.News;
+import com.readitsoon.pabbas.ObjectSerializer;
 import com.readitsoon.pabbas.R;
 
 import java.text.ParseException;
@@ -35,7 +36,6 @@ import java.util.TimeZone;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     private  static  Context mContext;
     private List<News> mNewsList;
-    private SharedPreferences sharedPrefs;
 
    // public static List<News> bookmarked=new ArrayList<>();
     /**
@@ -85,7 +85,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
         // Find the current news that was clicked on
         final News currentNews = mNewsList.get(position);
@@ -139,19 +138,33 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 //        }
 //        else
 
-            if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews.getUrl()))
+            if(MainActivity.bookmarkedUrl!=null&&MainActivity.bookmarkedUrl.contains(currentNews.getUrl()))
+            {
+                if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews)==false)
+                MainActivity.bookmarked.add(currentNews);
                 holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+            }
             else
             holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
 
             holder.bookmarkImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews.getUrl()))
+                    if(MainActivity.bookmarkedUrl!=null&&MainActivity.bookmarkedUrl.contains(currentNews.getUrl()))
                     {
                         //it already contains this item so unbookmark it and remove from list
                         holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
                         MainActivity.bookmarked.remove(currentNews);
+                        MainActivity.bookmarkedUrl.remove(currentNews.getUrl());
+                        SharedPreferences sharedPreferences=mContext.getSharedPreferences("com.readitsoon.pabbas",Context.MODE_PRIVATE);
+                        try{
+                            sharedPreferences.edit().putString("bookmarked", ObjectSerializer.serialize(MainActivity.bookmarkedUrl)).apply();
+                            Log.i("bookmarked",ObjectSerializer.serialize(MainActivity.bookmarkedUrl));
+                        }
+                        catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
                         Toast.makeText(mContext, "Removed from My Stories successfully!!", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(mContext, MainActivity.class);
                         intent.putExtra("finish","finish");
@@ -162,12 +175,21 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
                         //else bookmark it and add in list
                         holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
                         MainActivity.bookmarked.add(currentNews);
+                        MainActivity.bookmarkedUrl.add(currentNews.getUrl());
+                        SharedPreferences sharedPreferences=mContext.getSharedPreferences("com.readitsoon.pabbas",Context.MODE_PRIVATE);
+                        try{
+                            sharedPreferences.edit().putString("bookmarked", ObjectSerializer.serialize(MainActivity.bookmarkedUrl)).apply();
+                            Log.i("bookmarked",ObjectSerializer.serialize(MainActivity.bookmarkedUrl));
+                        }
+                        catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
                         Toast.makeText(mContext, "Added to My Stories successfully!!", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(mContext, MainActivity.class);
                         intent.putExtra("finish","finish");
                         mContext.startActivity(intent);
                     }
-
                 }
             });
 

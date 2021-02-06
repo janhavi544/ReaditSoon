@@ -1,5 +1,7 @@
 package com.readitsoon.pabbas;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -38,7 +40,22 @@ public class MainActivity extends AppCompatActivity {
     static boolean category=false;
    // public static int size;
     public static List<News> bookmarked=new ArrayList<>();
+    public static ArrayList<String> bookmarkedUrl=new ArrayList<>();
     private BottomSheetDialog bottomSheetDialog;
+    public void loadBookmarked()
+    {
+        SharedPreferences sharedPreferences=this.getSharedPreferences("com.readitsoon.pabbas", Context.MODE_PRIVATE);
+        try{
+
+            bookmarkedUrl=(ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("bookmarked",ObjectSerializer.serialize(new ArrayList<String>())));
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.myToolbar);
         tabLayout=(TabLayout)findViewById(R.id.tabLayout);
         setSupportActionBar(toolbar);
+
+        loadBookmarked();
         setPagerAdapter("ALL STORIES");
         tabLayout.setupWithViewPager(viewPager);
         // size= NewsAdapter.bookmarked.size();

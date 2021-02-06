@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.readitsoon.pabbas.MainActivity;
 import com.readitsoon.pabbas.News;
+import com.readitsoon.pabbas.ObjectSerializer;
 import com.readitsoon.pabbas.R;
 
 import java.text.ParseException;
@@ -34,7 +35,6 @@ import java.util.TimeZone;
 public class MyStoryNewsAdapter extends RecyclerView.Adapter<MyStoryNewsAdapter.ViewHolder>{
     private  static Context mContext;
     private List<News> mNewsList;
-    private SharedPreferences sharedPrefs;
 
     // public static List<News> bookmarked=new ArrayList<>();
     /**
@@ -85,7 +85,6 @@ public class MyStoryNewsAdapter extends RecyclerView.Adapter<MyStoryNewsAdapter.
 
     @Override
     public void onBindViewHolder(MyStoryNewsAdapter.ViewHolder holder, int position) {
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
         // Find the current news that was clicked on
         final News currentNews = mNewsList.get(position);
@@ -118,10 +117,21 @@ public class MyStoryNewsAdapter extends RecyclerView.Adapter<MyStoryNewsAdapter.
                         //it already contains this item so unbookmark it and remove from list
                         holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
                         MainActivity.bookmarked.remove(currentNews);
+                        MainActivity.bookmarkedUrl.remove(currentNews.getUrl());
+                    SharedPreferences sharedPreferences=mContext.getSharedPreferences("com.readitsoon.pabbas",Context.MODE_PRIVATE);
+                    try{
+                        sharedPreferences.edit().putString("bookmarked", ObjectSerializer.serialize(MainActivity.bookmarkedUrl)).apply();
+                        Log.i("bookmarked",ObjectSerializer.serialize(MainActivity.bookmarkedUrl));
+                    }
+                    catch(Exception e)
+                    {
+                        e.printStackTrace();
+                    }
                         Toast.makeText(mContext, "Removed from My Stories successfully!!", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(mContext, MainActivity.class);
                         intent.putExtra("finish","finish");
                         mContext.startActivity(intent);
+
                     //}
 //                    else
 //                    {
