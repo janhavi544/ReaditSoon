@@ -3,6 +3,7 @@ package com.readitsoon.pabbas;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -51,9 +52,8 @@ public class MainActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-
-
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -331,9 +331,5 @@ public class MainActivity extends AppCompatActivity {
        }
         categoryFragmentPagerAdapter.addFragment(new MyStoryFragment(getApplicationContext()),"MY STORIES",1);
         viewPager.setAdapter(categoryFragmentPagerAdapter);
-//        if( NewsAdapter.bookmarked.size()<size|| NewsAdapter.bookmarked.size()>size)
-//        {
-//            categoryFragmentPagerAdapter.notifyDataSetChanged();
-//        }
     }
 }

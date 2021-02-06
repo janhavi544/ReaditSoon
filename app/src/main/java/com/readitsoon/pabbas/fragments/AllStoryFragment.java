@@ -24,7 +24,7 @@ public class AllStoryFragment extends BaseFragment{
         public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
         String url = NewsPreference.getPreferredUrl(getContext(),category);
         Log.e("news", url);
-
+            setRetainInstance(true);
         // Create a new loader for the given URL
         return new NewsLoader(getActivity(),url);
     }

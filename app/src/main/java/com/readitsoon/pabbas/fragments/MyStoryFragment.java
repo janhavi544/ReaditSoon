@@ -82,7 +82,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
         EmptyRecyclerView mRecyclerView = rootView.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setHasFixedSize(true);
-
+        setRetainInstance(true);
         // Set the layoutManager on the {@link RecyclerView}
         mRecyclerView.setLayoutManager(layoutManager);
 
