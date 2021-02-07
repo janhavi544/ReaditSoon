@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     private static final String LOG_TAG = MyStoryFragment.class.getName();
     /** Constant value for the news loader ID. */
     private static final int NEWS_LOADER_ID = 1;
-
+    LinearLayout linearLayout;
     /** Adapter for the list of news */
     private MyStoryNewsAdapter mAdapter;
 
@@ -58,31 +59,17 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     public MyStoryFragment(Context context) {
         this.context=context;
     }
-//    private static SharedPreferences sharedPreferences = context.getSharedPreferences("Bookmarks", Context.MODE_PRIVATE);
-
-  //  private static SharedPreferences.Editor editor = sharedPreferences.edit();
-
-//    public <News> void setList(String key, List<News> list) {
-//        Gson gson = new Gson();
-//        String json = gson.toJson(list);
-//
-//        set(key, json);
-//    }
-//
-//    public static void set(String key, String value) {
-//        editor.putString(key, value);
-//        editor.commit();
-//    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.my_stories_fragment, container, false);
 
         // Find a reference to the {@link RecyclerView} in the layout
         // Replaced RecyclerView with EmptyRecyclerView
         EmptyRecyclerView mRecyclerView = rootView.findViewById(R.id.recycler_view);
+        linearLayout=rootView.findViewById(R.id.lyt_no_storiesBookmarked);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setHasFixedSize(true);
-        setRetainInstance(true);
+        //setRetainInstance(true);
         // Set the layoutManager on the {@link RecyclerView}
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -144,8 +131,8 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
         // Hide loading indicator because the data has been loaded
         mLoadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No news found."
-        mEmptyStateTextView.setText(R.string.no_news);
+       //  Set empty state text to display "No news found."
+        //mEmptyStateTextView.setText(R.string.no_news);
 
         // Clear the adapter of previous news data
         mAdapter.clearAll();
@@ -153,9 +140,9 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
         // If there is a valid list of {@link News}, then add them to the adapter's
         // data set. This will trigger the recyclerView to update.
         if (newsData != null && !newsData.isEmpty()) {
+           linearLayout.setVisibility(View.GONE);
             mAdapter.addAll(newsData);
         }
-
         // Hide the swipe icon animation when the loader is done refreshing the data
         mSwipeRefreshLayout.setRefreshing(false);
     }
@@ -173,6 +160,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public void onResume() {
         super.onResume();
+        mAdapter.clearAll();
         restartLoader(isConnected());
     }
 
@@ -199,6 +187,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
      */
     private void initializeLoader(boolean isConnected) {
         if (isConnected) {
+            mAdapter.clearAll();
             // Get a reference to the LoaderManager, in order to interact with loaders.
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader with the NEWS_LOADER_ID
@@ -220,6 +209,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
      */
     private void restartLoader(boolean isConnected) {
         if (isConnected) {
+            mAdapter.clearAll();
             // Get a reference to the LoaderManager, in order to interact with loaders.
             LoaderManager loaderManager = getLoaderManager();
             // Restart the loader with the NEWS_LOADER_ID
@@ -242,6 +232,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
      * When the user performs a swipe-to-refresh gesture, restart the loader.
      */
     public void initiateRefresh() {
+        mAdapter.clearAll();
         restartLoader(isConnected());
     }
 }

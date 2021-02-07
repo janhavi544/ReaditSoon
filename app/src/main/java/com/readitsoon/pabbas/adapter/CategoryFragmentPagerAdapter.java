@@ -25,14 +25,6 @@ public class CategoryFragmentPagerAdapter extends FragmentStatePagerAdapter {
       return fragmentList.get(position);
     }
 
-//    @Override
-//    public int getItemPosition(@NonNull Object object) {
-//        MyStoryFragment f = (MyStoryFragment ) object;
-//        if (f != null) {
-//            f.initiateRefresh();
-//        }
-//        return super.getItemPosition(object);
-//    }
 
     @Override
     public int getCount() {

@@ -24,6 +24,7 @@ import com.readitsoon.pabbas.MainActivity;
 import com.readitsoon.pabbas.News;
 import com.readitsoon.pabbas.ObjectSerializer;
 import com.readitsoon.pabbas.R;
+import com.readitsoon.pabbas.Webview;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,8 +37,6 @@ import java.util.TimeZone;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     private  static  Context mContext;
     private List<News> mNewsList;
-
-   // public static List<News> bookmarked=new ArrayList<>();
     /**
      * Constructs a new {@link NewsAdapter}
      * @param context of the app
@@ -100,43 +99,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         // and set the plain text on the textView
         String trailTextHTML = currentNews.getTrailTextHtml();
         holder.trailTextView.setText(Html.fromHtml(Html.fromHtml(trailTextHTML).toString()));
-//        //if from myStrory fragment
-//        if(from.equals("myStory"))
-//        {
-//            if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews.getUrl()))
-//            holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
-////            else
-////            {
-////                holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
-////            }
-//            holder.bookmarkImageView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if(MainActivity.bookmarked!=null&&MainActivity.bookmarked.contains(currentNews.getUrl()))
-//                    {
-//                        //it already contains this item so unbookmark it and remove from list
-//                        holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
-//                        MainActivity.bookmarked.remove(currentNews);
-//                        Toast.makeText(mContext, "Removed from My Stories successfully!!", Toast.LENGTH_SHORT).show();
-//                        Intent intent=new Intent(mContext, MainActivity.class);
-//                        intent.putExtra("finish","finish");
-//                        mContext.startActivity(intent);
-//                    }
-////                    else
-////                    {
-////                        //else bookmark it and add in list
-////                        holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
-////                        bookmarked.add(currentNews);
-////                        Toast.makeText(mContext, "Added to My Stories successfully!!", Toast.LENGTH_SHORT).show();
-////                        Intent intent=new Intent(mContext, MainActivity.class);
-////                        intent.putExtra("finish","finish");
-////                        mContext.startActivity(intent);
-////                    }
-//
-//                }
-//            });
-//        }
-//        else
 
             if(MainActivity.bookmarkedUrl!=null&&MainActivity.bookmarkedUrl.contains(currentNews.getUrl()))
             {
@@ -193,20 +155,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
                 }
             });
 
-        //bookmarking a news item
-
         // Set an OnClickListener to open a website with more information about the selected article
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Convert the String URL into a URI object (to pass into the Intent constructor)
-                Uri newsUri = Uri.parse(currentNews.getUrl());
-
-                // Create a new intent to view the news URI
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsUri);
-
-                // Send the intent to launch a new activity
-                mContext.startActivity(websiteIntent);
+                Intent webIntent=new Intent(mContext, Webview.class);
+                webIntent.putExtra("url",currentNews.getUrl());
+                mContext.startActivity(webIntent);
             }
         });
 

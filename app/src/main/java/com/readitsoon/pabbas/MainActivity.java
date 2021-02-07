@@ -2,6 +2,7 @@ package com.readitsoon.pabbas;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     String titleChange="";
     static boolean popular=true;
     static boolean category=false;
-   // public static int size;
     public static List<News> bookmarked=new ArrayList<>();
     public static ArrayList<String> bookmarkedUrl=new ArrayList<>();
     private BottomSheetDialog bottomSheetDialog;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.myToolbar);
         tabLayout=(TabLayout)findViewById(R.id.tabLayout);
         setSupportActionBar(toolbar);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         loadBookmarked();
         setPagerAdapter("ALL STORIES");
         tabLayout.setupWithViewPager(viewPager);

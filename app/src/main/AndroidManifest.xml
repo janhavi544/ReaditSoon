@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReaditSoon"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Webview"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
