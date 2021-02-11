@@ -17,10 +17,10 @@ public class Constants {
     static final String JSON_KEY_TRAIL_TEXT = "trailText";
 
     /** Read timeout for setting up the HTTP request */
-    static final int READ_TIMEOUT = 10000; /* milliseconds */
+    static final int READ_TIMEOUT = 100000; /* milliseconds */
 
     /** Connect timeout for setting up the HTTP request */
-    static final int CONNECT_TIMEOUT = 15000; /* milliseconds */
+    static final int CONNECT_TIMEOUT = 150000; /* milliseconds */
 
     /** HTTP response code when the request is successful */
     static final int SUCCESS_RESPONSE_CODE = 200;

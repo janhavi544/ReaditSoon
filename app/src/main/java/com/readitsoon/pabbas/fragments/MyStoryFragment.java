@@ -1,6 +1,7 @@
 package com.readitsoon.pabbas.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -42,7 +43,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     private static final int NEWS_LOADER_ID = 1;
     LinearLayout linearLayout;
     /** Adapter for the list of news */
-    private MyStoryNewsAdapter mAdapter;
+    public static MyStoryNewsAdapter myStoryNewsAdapter;
 
     /** TextView that is displayed when the recycler view is empty */
     private TextView mEmptyStateTextView;
@@ -53,7 +54,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     /** The {@link SwipeRefreshLayout} that detects swipe gestures and
      * triggers callbacks in the app.
      */
-    private static int size;
+
     private SwipeRefreshLayout mSwipeRefreshLayout;
     public static Context context;
     public MyStoryFragment(Context context) {
@@ -95,21 +96,15 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
         mRecyclerView.setEmptyView(mEmptyStateTextView);
 
         // Create a new adapter that takes an empty list of news as input
-        mAdapter = new MyStoryNewsAdapter(getActivity(), new ArrayList<News>());
+        myStoryNewsAdapter = new MyStoryNewsAdapter(getActivity(), new ArrayList<News>());
 
         // Set the adapter on the {@link recyclerView}
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(myStoryNewsAdapter);
 
         // Check for network connectivity and initialize the loader
         initializeLoader(isConnected());
         List<News> bookmarked= MainActivity.bookmarked;
-        size=bookmarked.size();
         onLoadFinished(onCreateLoader(0,Bundle.EMPTY),bookmarked);
-        if(bookmarked.size()<size||bookmarked.size()>size)
-        {
-            restartLoader(true);
-            initiateRefresh();
-        }
 
         return rootView;
     }
@@ -135,13 +130,13 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
         //mEmptyStateTextView.setText(R.string.no_news);
 
         // Clear the adapter of previous news data
-        mAdapter.clearAll();
+        myStoryNewsAdapter.clearAll();
 
         // If there is a valid list of {@link News}, then add them to the adapter's
         // data set. This will trigger the recyclerView to update.
         if (newsData != null && !newsData.isEmpty()) {
            linearLayout.setVisibility(View.GONE);
-            mAdapter.addAll(newsData);
+            myStoryNewsAdapter.addAll(newsData);
         }
         // Hide the swipe icon animation when the loader is done refreshing the data
         mSwipeRefreshLayout.setRefreshing(false);
@@ -150,7 +145,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public void onLoaderReset(@NonNull Loader<List<News>> loader) {
         // Loader reset, so we can clear out our existing data.
-        mAdapter.clearAll();
+        myStoryNewsAdapter.clearAll();
     }
 
     /**
@@ -160,7 +155,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public void onResume() {
         super.onResume();
-        mAdapter.clearAll();
+        myStoryNewsAdapter.clearAll();
         restartLoader(isConnected());
     }
 
@@ -187,7 +182,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
      */
     private void initializeLoader(boolean isConnected) {
         if (isConnected) {
-            mAdapter.clearAll();
+            myStoryNewsAdapter.clearAll();
             // Get a reference to the LoaderManager, in order to interact with loaders.
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader with the NEWS_LOADER_ID
@@ -209,7 +204,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
      */
     private void restartLoader(boolean isConnected) {
         if (isConnected) {
-            mAdapter.clearAll();
+            myStoryNewsAdapter.clearAll();
             // Get a reference to the LoaderManager, in order to interact with loaders.
             LoaderManager loaderManager = getLoaderManager();
             // Restart the loader with the NEWS_LOADER_ID
@@ -232,7 +227,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
      * When the user performs a swipe-to-refresh gesture, restart the loader.
      */
     public void initiateRefresh() {
-        mAdapter.clearAll();
+        myStoryNewsAdapter.clearAll();
         restartLoader(isConnected());
     }
 }

@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomSheetDialog bottomSheetDialog;
     public void loadBookmarked()
     {
+        bookmarkedUrl.clear();
         SharedPreferences sharedPreferences=this.getSharedPreferences("com.readitsoon.pabbas", Context.MODE_PRIVATE);
         try{
 
@@ -62,16 +64,25 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.myToolbar);
         tabLayout=(TabLayout)findViewById(R.id.tabLayout);
         setSupportActionBar(toolbar);
+        bookmarked.clear();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         loadBookmarked();
-        setPagerAdapter("ALL STORIES");
         tabLayout.setupWithViewPager(viewPager);
-        // size= NewsAdapter.bookmarked.size();
      String str=getIntent().getStringExtra("finish");
      if(str!=null&&str.equals("finish"))
      {
          finish();
+         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+         String title = preferences.getString("title", "ALL STORIES");
+         if(title!=null)
+         {
+             bookmarked.clear();
+             MyStoryFragment.myStoryNewsAdapter.clearAll();
+             setPagerAdapter(title);
+         }
      }
+     else
+         setPagerAdapter("ALL STORIES");
     }
 
     @Override
@@ -294,6 +305,10 @@ public class MainActivity extends AppCompatActivity {
         categoryFragmentPagerAdapter = new CategoryFragmentPagerAdapter(getSupportFragmentManager());
        if(title==null||title.length()<=0)
            title+="ALL STORIES";
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("title",title);
+        editor.apply();
        if(title.equals("BUSINESS"))
        {
            categoryFragmentPagerAdapter.addFragment(new AllStoryFragment(getString(R.string.business)),title,0);

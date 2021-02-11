@@ -48,7 +48,6 @@ public class MyStoryNewsAdapter extends RecyclerView.Adapter<MyStoryNewsAdapter.
     public MyStoryNewsAdapter(Context context, List<News> newsList) {
         mContext = context;
         mNewsList = newsList;
-        clearAll();
     }
 
     @Override
@@ -114,7 +113,6 @@ public class MyStoryNewsAdapter extends RecyclerView.Adapter<MyStoryNewsAdapter.
                         holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
                         MainActivity.bookmarked.remove(currentNews);
                         MainActivity.bookmarkedUrl.remove(currentNews.getUrl());
-                        notifyDataSetChanged();
                     SharedPreferences sharedPreferences=mContext.getSharedPreferences("com.readitsoon.pabbas",Context.MODE_PRIVATE);
                     try{
                         sharedPreferences.edit().putString("bookmarked", ObjectSerializer.serialize(MainActivity.bookmarkedUrl)).apply();
