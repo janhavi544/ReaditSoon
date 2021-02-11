@@ -103,8 +103,8 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
 
         // Check for network connectivity and initialize the loader
         initializeLoader(isConnected());
-        List<News> bookmarked= MainActivity.bookmarked;
-        onLoadFinished(onCreateLoader(0,Bundle.EMPTY),bookmarked);
+       // List<News> bookmarked= MainActivity.bookmarked;
+        //onLoadFinished(onCreateLoader(0,Bundle.EMPTY),bookmarked);
 
         return rootView;
     }
@@ -155,7 +155,7 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public void onResume() {
         super.onResume();
-        myStoryNewsAdapter.clearAll();
+       // myStoryNewsAdapter.clearAll();
         restartLoader(isConnected());
     }
 
@@ -227,7 +227,6 @@ public class MyStoryFragment extends Fragment implements LoaderManager.LoaderCal
      * When the user performs a swipe-to-refresh gesture, restart the loader.
      */
     public void initiateRefresh() {
-        myStoryNewsAdapter.clearAll();
         restartLoader(isConnected());
     }
 }

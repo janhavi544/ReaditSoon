@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
         try{
 
             bookmarkedUrl=(ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("bookmarked",ObjectSerializer.serialize(new ArrayList<String>())));
+            if(bookmarkedUrl!=null)
+            {
+                for(int i=0;i<bookmarkedUrl.size();i++)
+                    Log.i("bookmarkURL",bookmarkedUrl.get(i));
+            }
+            if(bookmarked!=null)
+            {
+                for(int i=0;i<bookmarked.size();i++)
+                    Log.i("bookmark",bookmarked.get(i).getUrl());
+            }
         }
         catch(Exception e)
         {
@@ -64,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.myToolbar);
         tabLayout=(TabLayout)findViewById(R.id.tabLayout);
         setSupportActionBar(toolbar);
-        bookmarked.clear();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         loadBookmarked();
         tabLayout.setupWithViewPager(viewPager);
@@ -76,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
          String title = preferences.getString("title", "ALL STORIES");
          if(title!=null)
          {
-             bookmarked.clear();
-             MyStoryFragment.myStoryNewsAdapter.clearAll();
+             //bookmarked.clear();
+             //MyStoryFragment.myStoryNewsAdapter.clearAll();
              setPagerAdapter(title);
          }
      }

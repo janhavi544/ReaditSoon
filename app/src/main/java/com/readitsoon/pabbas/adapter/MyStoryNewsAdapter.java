@@ -88,9 +88,6 @@ public class MyStoryNewsAdapter extends RecyclerView.Adapter<MyStoryNewsAdapter.
     @Override
     public void onBindViewHolder(MyStoryNewsAdapter.ViewHolder holder, int position) {
 
-//       MainActivity.bookmarkedUrl= new ArrayList<String>(new LinkedHashSet<>(MainActivity.bookmarkedUrl));
-//        MainActivity.bookmarked= new ArrayList<News>(new LinkedHashSet<>(MainActivity.bookmarked));
-
         // Find the current news that was clicked on
         final News currentNews = mNewsList.get(position);
 
@@ -113,6 +110,7 @@ public class MyStoryNewsAdapter extends RecyclerView.Adapter<MyStoryNewsAdapter.
                         holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
                         MainActivity.bookmarked.remove(currentNews);
                         MainActivity.bookmarkedUrl.remove(currentNews.getUrl());
+                        MainActivity.bookmarked.notifyAll();
                     SharedPreferences sharedPreferences=mContext.getSharedPreferences("com.readitsoon.pabbas",Context.MODE_PRIVATE);
                     try{
                         sharedPreferences.edit().putString("bookmarked", ObjectSerializer.serialize(MainActivity.bookmarkedUrl)).apply();

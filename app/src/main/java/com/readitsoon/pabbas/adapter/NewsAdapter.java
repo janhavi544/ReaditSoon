@@ -106,6 +106,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
                 {
                     MainActivity.bookmarked.add(currentNews);
                 }
+                else if(MainActivity.bookmarked==null||MainActivity.bookmarked.size()<=0)
+                {
+                    MainActivity.bookmarked.add(currentNews);
+                }
                 holder.bookmarkImageView.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
             }
             else
